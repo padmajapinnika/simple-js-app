@@ -1,3 +1,17 @@
-alert('Hello world');
-let favaroite_food='chicken rice';
-document.write(favaroite_food);
+let pokemonList=[
+    {
+        name:"Bulbasur",
+        height:7,
+        types:["grass","poison"]
+    },
+    {
+        name:"Ivysaur",
+        height:1,
+        types:["grass","poison"]
+    },
+    {
+        name:"venusaur",
+        height:2,
+        types:["grass","poison"]
+    }
+];
