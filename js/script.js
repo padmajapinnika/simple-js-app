@@ -3,14 +3,12 @@ let pokemonList = [
     { name: "Nidoking", height: 1.4, types: ["ground", "poison"] },
     { name: "Charmander", height: 0.6, types: ["fire"] }
 ];
-//displaying pokemon names with heights with for loop
-for (let i = 0; i < pokemonList.length; i++) {
-    let output = "<p>" + pokemonList[i].name + " (height: " + pokemonList[i].height + ")";
-    //finding special pokemon
-    if(pokemonList[i].height<0.7){
-        output += " - Aww! It's so cute";
 
-    }
-    output+="</p>"
-document.write(output);
+// Function to log each Pokémon's details
+function displayPokemon(pokemon) {
+    document.write("<p>" + pokemon.name + " (height: " + pokemon.height + ") - Types: " + pokemon.types.join(", ") + "</p>");
 }
+
+// Using forEach to iterate over the array
+pokemonList.forEach(displayPokemon);
+
