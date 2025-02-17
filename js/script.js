@@ -1,11 +1,12 @@
+//--pokemon repository IIFE--
 let pokemonRepository = (function () {
 let pokemonList = [
     { name: "Bulbasaur", height: 0.7, types: ["grass", "poison"] },
     { name: "Nidoking", height: 1.4, types: ["ground", "poison"] },
     { name: "Charmander", height: 0.6, types: ["fire"] }
 ];
-
-   // Function to add a new Pokémon
+//--function to add pokemon--
+   
    function add(item) {
     if (
         typeof item === "object" &&
@@ -18,24 +19,45 @@ let pokemonList = [
         console.error("Invalid Pokémon format");
     }
 }
+//function to add pokemon to the list--
+function addListItem(pokemon){
+    let pokemonList=document.querySelector(".pokemon-list")
+    let listpokemon=document.createElement("li");
+    let button=document.createElement("button");
+    button.innerText=pokemon.name;
+    button.classList.add("button-class");
+    listpokemon.appendChild(button);
+    pokemonList.appendChild(listpokemon);
+    button.addEventListener('click',function(){
+        showDetails(pokemon);
+    })
+}
+//--function to display pokemon details
+function showDetails(pokemon) {
+    console.log(pokemon);
+}
+
+
      // Function to get all Pokémon
      function getAll() {
         return pokemonList;
     }
-    // Function to display a Pokémon
-    function displayPokemon(pokemon) {
-        document.write("<p>" + pokemon.name + " (height: " + pokemon.height + ") - Types: " + pokemon.types.join(", ") + "</p>");
-    }
+
 
       // Returning the object with public methods
       return {
         getAll: getAll,
         add: add,
-        displayPokemon: displayPokemon
+        addListItem
     };
 })();
 
-//pokemonRepository.getAll().forEach(pokemonRepository.displayPokemon);
+//--add new pokemon
 pokemonRepository.add({ name: "Pikachu", height: 0.4, types: ["electric"] }); // Adding Pikachu
 pokemonRepository.add({ name: "oddish", height: 0.5, types: ["grass,poison"] });//adding oddish
-pokemonRepository.getAll().forEach(pokemonRepository.displayPokemon); // Display updated list
+
+//--display pokemon as button--
+pokemonRepository.getAll().forEach(function(pokemon){
+    pokemonRepository.addListItem(pokemon);
+}); 
+

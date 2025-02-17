@@ -1,5 +1,22 @@
-p{
-    font-size:18px;
-    color:hsl(216, 60%, 35%);
-
+h1{
+    font-size: 24px;
+    color: #361a1a;
 }
+/*styles for buttons*/
+.button-class {
+    background-color: #e37310; /* Green */
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    background-color: rgb(195, 120, 120);
+    color: black;
+    border: 2px solid #043205;
+  }
