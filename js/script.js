@@ -1,63 +1,105 @@
-//--pokemon repository IIFE--
 let pokemonRepository = (function () {
-let pokemonList = [
-    { name: "Bulbasaur", height: 0.7, types: ["grass", "poison"] },
-    { name: "Nidoking", height: 1.4, types: ["ground", "poison"] },
-    { name: "Charmander", height: 0.6, types: ["fire"] }
-];
-//--function to add pokemon--
-   
-   function add(item) {
-    if (
-        typeof item === "object" &&
-        "name" in item &&
-        "height" in item &&
-        "types" in item
-    ) {
-        pokemonList.push(item);
-    } else {
-        console.error("Invalid Pokémon format");
+    let pokemonList = [];
+    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
+//function to show loading message//
+    function showLoadingMessage() {
+        let loadingMessage = document.createElement("p");
+        loadingMessage.innerText = "Loading...";
+        loadingMessage.classList.add("loading-message");
+        document.body.appendChild(loadingMessage);
     }
-}
-//function to add pokemon to the list--
-function addListItem(pokemon){
-    let pokemonList=document.querySelector(".pokemon-list")
-    let listpokemon=document.createElement("li");
-    let button=document.createElement("button");
-    button.innerText=pokemon.name;
-    button.classList.add("button-class");
-    listpokemon.appendChild(button);
-    pokemonList.appendChild(listpokemon);
-    button.addEventListener('click',function(){
-        showDetails(pokemon);
-    })
-}
-//--function to display pokemon details
-function showDetails(pokemon) {
-    console.log(pokemon);
-}
-
-
-     // Function to get all Pokémon
-     function getAll() {
+ //Function to hide the loading message//
+    function hideLoadingMessage() {
+        let loadingMessage = document.querySelector(".loading-message");
+        if (loadingMessage) {
+            loadingMessage.remove();
+        }
+    }
+// Function to add a Pokémon to the repository//
+    function add(pokemon) {
+        if (
+          typeof pokemon === "object" &&
+          "name" in pokemon
+        ) {
+          pokemonList.push(pokemon);
+        } else {
+          console.log("pokemon is not correct");
+        }
+      }
+//Function to return all Pokémon from the repository//
+      function getAll() {
         return pokemonList;
-    }
-
-
-      // Returning the object with public methods
+      }
+//Function to add a Pokémon button to the list//
+      function addListItem(pokemon) {
+        let pokemonList = document.querySelector(".pokemon-list");
+        let listpokemon = document.createElement("li");
+        let button = document.createElement("button");
+        button.innerText = pokemon.name;
+        button.classList.add("button-class");
+        listpokemon.appendChild(button);
+        pokemonList.appendChild(listpokemon);
+//Add an event listener to show details when button is clicked//        
+        button.addEventListener("click", function(event) {
+          showDetails(pokemon);
+        });
+      }
+//Function to load Pokémon list from API//
+      function loadList() {
+        showLoadingMessage();
+        return fetch(apiUrl).then(function (response) {
+          return response.json();
+        }).then(function (json) {
+          json.results.forEach(function (item) {
+            hideLoadingMessage();
+            let pokemon = {
+              name: item.name,
+              detailsUrl: item.url
+            };
+            add(pokemon);
+            console.log(pokemon);
+          });
+        }).catch(function (e) {
+            hideLoadingMessage();
+          console.error(e);
+        })
+      }
+//Function to load details of a selected Pokémon//
+      function loadDetails(item) {
+        showLoadingMessage();
+        let url = item.detailsUrl;
+        return fetch(url).then(function (response) {
+          return response.json();
+        }).then(function (details) {
+            hideLoadingMessage();
+//add the details to the item//
+          item.imageUrl = details.sprites.front_default;
+          item.height = details.height;
+          item.types = details.types;
+        }).catch(function (e) {
+            hideLoadingMessage();
+          console.error(e);
+        });
+      }
+//Function to display Pokémon details//      
+      function showDetails(item) {
+        pokemonRepository.loadDetails(item).then(function () {
+          console.log(item);
+        });
+      }
+//Return public methods//    
       return {
-        getAll: getAll,
         add: add,
-        addListItem
-    };
+        getAll: getAll,
+        addListItem: addListItem,
+        loadList: loadList,
+        loadDetails: loadDetails,
+        showDetails: showDetails
+      };
 })();
-
-//--add new pokemon
-pokemonRepository.add({ name: "Pikachu", height: 0.4, types: ["electric"] }); // Adding Pikachu
-pokemonRepository.add({ name: "oddish", height: 0.5, types: ["grass,poison"] });//adding oddish
-
-//--display pokemon as button--
-pokemonRepository.getAll().forEach(function(pokemon){
-    pokemonRepository.addListItem(pokemon);
-}); 
-
+//Load Pokémon list and display them as buttons//
+pokemonRepository.loadList().then(function () {
+    pokemonRepository.getAll().forEach(function (pokemon) {
+      pokemonRepository.addListItem(pokemon);
+    });
+  });
