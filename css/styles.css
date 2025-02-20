@@ -1,14 +1,7 @@
 body{
-    background-color: #827fcb;
+    background-color: #eb932f;
 }
-    h1{
-    font-size: 24px;
-    color: #3a0303;
-}
-h2{
-    font-size: 24px;
-    color: #413db9;
-}
+    
 /*styles for buttons*/
 .button-class {
     background-color: #e37310; /* Green */
@@ -25,7 +18,7 @@ h2{
     cursor: pointer;
     background-color: rgb(90, 31, 122);
     color: rgb(213, 213, 204);
-    border: 2px solid #1e2cf3;
+    border: 2px solid #3c0d30;
   }
 
  
