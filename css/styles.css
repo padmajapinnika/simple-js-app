@@ -1,19 +1,52 @@
-body{
-    background-color: #827fcb;
+body {
+    background-size: auto;
+    background-repeat: repeat;
+    background-position: auto center;
+    margin: 0;
 }
-    h1{
-    font-size: 24px;
-    color: #3a0303;
+#pokemonModalLabel{
+    color: rgb(74, 27, 5);
 }
-h2{
-    font-size: 24px;
-    color: #413db9;
+
+.my-Header{
+    float: center;
+    color: #000;
+    font-size: xx-large;
+    padding: 20px;
+    text-align: center;
+    color: rgb(114, 85, 4);
 }
+
+.pokemon-list{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+    grid-gap: 5px;
+    height: 600px;
+    list-style: none;
+    padding: 0;
+}
+
+
+.pokemon-list button {
+    border-color: red;
+    color: rgb(36, 5, 5);
+    background-color: rgb(164, 149, 45);
+    border:2px;
+   
+}
+.pokemon-list button:hover{
+    border-color: red;
+    color: rgb(36, 5, 5);
+    background-color: rgb(157, 150, 103);
+    border:2px;
+   
+}
+
 /*styles for buttons*/
 .button-class {
-    background-color: #e37310; /* Green */
-    border: none;
-    color: rgb(188, 170, 170);
+    background-color: #ada59f; /* Green */
+    border: 2px solid yellow;
+    color: rgb(243, 14, 14);
     padding: 16px 32px;
     text-align: center;
     text-decoration: none;
@@ -23,9 +56,6 @@ h2{
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
     cursor: pointer;
-    background-color: rgb(90, 31, 122);
-    color: rgb(213, 213, 204);
-    border: 2px solid #1e2cf3;
   }
 
  
@@ -33,3 +63,4 @@ h2{
     width: 150px;
     height: auto;
 }
+

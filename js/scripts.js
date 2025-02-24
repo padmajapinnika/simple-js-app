@@ -1,3 +1,4 @@
+
 let pokemonRepository = (function () {
     // Private variables
     let pokemonList = [];
@@ -74,10 +75,13 @@ let pokemonRepository = (function () {
         } else {
             console.error('Modal elements not found.');
         }
+        // Remove focus before showing modal
+        document.activeElement?.blur(); 
         });
          // Show the modal
          $('#pokemonModal').modal('show');
     }
+    
 
     // Function to add a Pokémon button to the list
     function addListItem(pokemon) {
