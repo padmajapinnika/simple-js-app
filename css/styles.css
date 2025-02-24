@@ -1,66 +1,65 @@
+
 body {
-    background-size: auto;
-    background-repeat: repeat;
-    background-position: auto center;
-    margin: 0;
+    background-color: #f4f4f9; /* Light background color */
+    font-family: Arial, sans-serif; /* Clean, modern font */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-#pokemonModalLabel{
-    color: rgb(74, 27, 5);
+.navbar {
+    background-color: #3b3f4b; /* Dark background for the navbar */
+    width: 100%; /* Ensure the navbar spans the full width of the page */
+    padding: 10px 0; /* Adjust the padding for consistency */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add subtle shadow under navbar */
+    position: relative; /* Make sure the navbar is positioned relative to the page */
 }
 
-.my-Header{
-    float: center;
-    color: #000;
-    font-size: xx-large;
-    padding: 20px;
-    text-align: center;
-    color: rgb(114, 85, 4);
+/* Ensure the container stretches across the full page */
+.navbar .container-fluid {
+    max-width: 100%; /* Override the max-width */
+    padding: 0 20px; /* Add padding to prevent content from touching the edges */
 }
 
 .pokemon-list{
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
     grid-gap: 5px;
-    height: 600px;
-    list-style: none;
-    padding: 0;
+    list-style:none;
+    padding: 10px;
 }
-
+#pokemonModalLabel{
+    color: rgb(74, 27, 5);
+}
+#pokemon-image {
+    width: 100%; /* Makes the image responsive */
+    height: auto; 
+    max-width: 300px; /* Ensure it doesn't get too large */
+    margin: 0 auto; /* Center the image */
+    display: block;
+}
+.modal-dialog {
+    max-width: 500px; /* Adjust the width of the modal */
+    margin: 1.75rem auto; /* Center modal */
+}
+.my-Header {
+    text-align: center;
+    color: rgb(114, 85, 4);
+    font-size: xx-large;
+    padding: 20px;
+}
 
 .pokemon-list button {
     border-color: red;
     color: rgb(36, 5, 5);
     background-color: rgb(164, 149, 45);
     border:2px;
-   
+    transition: background-color 0.3s;
 }
-.pokemon-list button:hover{
-    border-color: red;
-    color: rgb(36, 5, 5);
+.pokemon-list button:hover {
     background-color: rgb(157, 150, 103);
-    border:2px;
-   
 }
-
-/*styles for buttons*/
-.button-class {
-    background-color: #ada59f; /* Green */
-    border: 2px solid yellow;
-    color: rgb(243, 14, 14);
-    padding: 16px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
-    cursor: pointer;
-  }
-
- 
-.pokemon-image {
-    width: 150px;
-    height: auto;
+.modal-backdrop.show {
+    opacity: 0.8; /* Adjust opacity of the modal backdrop */
 }
-
