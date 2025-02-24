@@ -66,7 +66,7 @@ let pokemonRepository = (function () {
             // Update the modal with the Pokémon's details
             if (modalTitle && modalImage && modalHeight && modalWeight && modalTypes) {
             modalTitle.innerText = pokemon.name;
-            modalImage.src = pokemon.imageUrl;
+            //modalImage.src = pokemon.imageUrl;
             modalHeight.innerText = `Height: ${pokemon.height} ft`;
             modalWeight.innerText = `Weight: ${pokemon.weight} lbs`;
             modalTypes.innerText = `Type(s): ${pokemon.types.join(', ')}`;
