@@ -6,6 +6,7 @@
 <h2>Key Features</h2>
 <ul>
   <li>View a list of Pokémons</li>
+  <li>After clicking on a Pokémon, a modal appears with some details</li>
 </ul>
 
 <h2>Description</h2>
